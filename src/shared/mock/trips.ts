@@ -1,4 +1,4 @@
-import type { Trip } from "../../entities/Trip/model/types";
+import type { Trip } from "../../entities/Trip/types";
 
 export const trips: Trip[] = [
     {

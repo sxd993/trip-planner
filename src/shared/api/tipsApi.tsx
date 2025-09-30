@@ -1,4 +1,4 @@
-import type { Trip } from "../../entities/Trip/model/types";
+import type { Trip } from "../../entities/Trip/types";
 import { trips } from "../mock/trips";
 import { shuffle } from "../utils/shuffle";
 
@@ -8,15 +8,15 @@ export const getTripsList = (): Promise<Trip[]> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(shuffle(trips.filter((trip) => trip.isVisited !== true)).map((trip) => ({ ...trip })));
-        }, 500);
+        }, 200);
     });
 };
 
-export const getUserList = (): Promise<Trip[]> => {
+export const getUserTripList = (): Promise<Trip[]> => {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(shuffle(trips.filter((trip) => trip.isVisited === true)).map((trip) => ({ ...trip })));
-        }, 500);
+        }, 200);
     });
 };
 
@@ -43,7 +43,7 @@ export const getFilteredTrips = (
             });
 
             resolve(shuffle(filteredTrips).map((trip) => ({ ...trip })));
-        }, 500);
+        }, 200);
     });
 };
 

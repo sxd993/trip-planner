@@ -1,11 +1,16 @@
-import type { Trip } from "../model/types";
+import type { Trip } from "../types";
 import { TripCard } from "../../../shared/ui/TripCard";
+import { Loading } from "../../../shared/ui/states/Loading";
 
 interface TripsListProps {
-    trips: Trip[];
+    trips: Trip[],
+    isLoading: boolean;
 }
 
-export const TripsList = ({ trips }: TripsListProps) => {
+export const TripsList = ({ trips, isLoading }: TripsListProps) => {
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <section className="flex w-full flex-col">
             <header className="flex flex-col gap-2 px-4 py-2">

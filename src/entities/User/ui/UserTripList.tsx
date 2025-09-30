@@ -1,8 +1,12 @@
-import { useUserTrips } from "../../shared/hooks/useTrips";
-import { TripCard } from "../../shared/ui/TripCard";
+import { useUserTrips } from "../hooks/useUserTrips";
+import { TripCard } from "../../../shared/ui/TripCard";
+import { Loading } from "../../../shared/ui/states/Loading";
 
 export const UserTripList = () => {
-    const { trips } = useUserTrips()
+    const { trips, isLoading } = useUserTrips()
+    if (isLoading) {
+        return <Loading />
+    }
     return (
         <section className="flex w-full flex-col">
             <header className="flex flex-col gap-2 border-slate-100 px-4 py-4">

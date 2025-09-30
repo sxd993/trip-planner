@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import type { Trip } from "../../entities/Trip/model/types";
+import type { Trip } from "../../entities/Trip/types";
 import { Check, MapPin } from "lucide-react";
 
 interface TripCardProps {
