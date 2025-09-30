@@ -11,7 +11,7 @@ interface Filter {
 }
 
 export const useFilterStore = create<Filter>((set) => ({
-    country: "",
+    country: "Все страны",
     isVisited: "all",
     setCountry: (country) => set({ country }),
     setIsVisited: (value) => set({ isVisited: value }),

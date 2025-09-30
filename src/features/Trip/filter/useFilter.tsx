@@ -1,27 +1,32 @@
-import { useCallback } from "react";
+import { useCallback, useMemo } from "react";
+
+import { useFilterStore } from "./store";
+import { useTrips } from "../../../entities/Trip/hooks/useTrips";
+import { getCountryOptions } from "./lib/getCountryOptions";
 import { useQueryClient } from "@tanstack/react-query";
 
-import { getFilteredTrips } from "../../../shared/api/tipsApi";
-import { useFilterStore } from "./store";
 
 export const useFilter = () => {
-    const queryClient = useQueryClient();
 
+    //  Хуки
+    const client = useQueryClient();
+    const { trips } = useTrips();
+
+    // Магазин состояний
     const country = useFilterStore((state) => state.country);
     const isVisited = useFilterStore((state) => state.isVisited);
     const setCountry = useFilterStore((state) => state.setCountry);
     const setIsVisited = useFilterStore((state) => state.setIsVisited);
     const reset = useFilterStore((state) => state.reset);
 
+
+    // Уникальные значения options для select country
+    const countryOptions = useMemo(() => getCountryOptions(trips), [trips]);
+
+    // Функция применения поиска
     const handleSearch = useCallback(async () => {
-        try {
-            const data = await getFilteredTrips(country, isVisited);
-            queryClient.setQueryData(["trips"], data);
-        } catch (error) {
-            queryClient.setQueryData(["trips"], []);
-            console.error("Failed to filter trips", error);
-        }
-    }, [country, isVisited, queryClient]);
+        client.invalidateQueries({ queryKey: ['trips'] })
+    }, [])
 
     return {
         country,
@@ -30,5 +35,6 @@ export const useFilter = () => {
         setIsVisited,
         reset,
         handleSearch,
+        countryOptions,
     };
 };

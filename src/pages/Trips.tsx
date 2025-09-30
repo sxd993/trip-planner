@@ -1,9 +1,15 @@
-import { useTrips } from "../entities/Trip/hooks/useTrips"
+import { useFilteredTrips } from "../entities/Trip/hooks/useTrips"
 import { TripsList } from "../entities/Trip/ui/TripsList"
+import { Filter } from "../entities/Trip/ui/Filter"
 
 export const Trips = () => {
-    const { trips, isLoading } = useTrips()
+    const { trips, isLoading } = useFilteredTrips()
+
     return (
-        <TripsList trips={trips} isLoading={isLoading} />
+        <>
+            <Filter />
+            <TripsList trips={trips} isLoading={isLoading} />
+        </>
+
     )
 }
