@@ -1,3 +1,5 @@
+// Утилитная функция для перемещивания объектов внутри массива
+
 export const shuffle = <T,>(collection: T[]): T[] => {
     const result = [...collection];
     for (let i = result.length - 1; i > 0; i -= 1) {

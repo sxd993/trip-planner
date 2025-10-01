@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { getUserTripList } from "../../../shared/api/tipsApi";
+import { getUserTripList } from "../api/UserApi";
 import type { UseTripsResult } from "../../../shared/types/types";
 
 export const useUserTrips = (): UseTripsResult => {

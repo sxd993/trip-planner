@@ -1,21 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getTripsList, getFilteredTrips } from "../../../shared/api/tipsApi";
+import { getFilteredTrips } from "../api/TripApi";
 import type { UseTripsResult } from "../../../shared/types/types";
-import { useFilterStore } from "../../../features/Trip/filter/store";
-
-export const useTrips = (): UseTripsResult => {
-    const { data, isLoading, error } = useQuery({
-        queryKey: ["trips"],
-        queryFn: getTripsList,
-        staleTime: 60 * 1000 * 30, // 30 минут
-    });
-
-    return {
-        trips: data ?? [],
-        isLoading,
-        error,
-    };
-};
+import { useFilterStore } from "../../../features/Filter/store/store";
 
 
 export const useFilteredTrips = (): UseTripsResult => {

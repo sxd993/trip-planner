@@ -1,16 +1,12 @@
-import { useCallback, useMemo } from "react";
+import { useCallback } from "react";
 
-import { useFilterStore } from "./store";
-import { useTrips } from "../../../entities/Trip/hooks/useTrips";
-import { getCountryOptions } from "./lib/getCountryOptions";
+import { useFilterStore } from "../store/store";
 import { useQueryClient } from "@tanstack/react-query";
-
 
 export const useFilter = () => {
 
     //  Хуки
     const client = useQueryClient();
-    const { trips } = useTrips();
 
     // Магазин состояний
     const country = useFilterStore((state) => state.country);
@@ -18,10 +14,6 @@ export const useFilter = () => {
     const setCountry = useFilterStore((state) => state.setCountry);
     const setIsVisited = useFilterStore((state) => state.setIsVisited);
     const reset = useFilterStore((state) => state.reset);
-
-
-    // Уникальные значения options для select country
-    const countryOptions = useMemo(() => getCountryOptions(trips), [trips]);
 
     // Функция применения поиска
     const handleSearch = useCallback(async () => {
@@ -35,6 +27,6 @@ export const useFilter = () => {
         setIsVisited,
         reset,
         handleSearch,
-        countryOptions,
+
     };
 };

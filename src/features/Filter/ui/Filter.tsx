@@ -1,8 +1,9 @@
-import { useFilter } from "../../../features/Trip/filter/useFilter"
+import { useFilterOptions } from "../hooks/useFilterOptions";
+import { useFilter } from "../hooks/useFilter"
 
 export const Filter = () => {
-    const { country, countryOptions, handleSearch, setCountry } = useFilter();
-    console.log(countryOptions)
+    const { country, handleSearch, setCountry } = useFilter();
+    const { options } = useFilterOptions();
 
     return (
         <div>
@@ -14,7 +15,7 @@ export const Filter = () => {
                 value={country}
             >
                 <option>Все страны</option>
-                {countryOptions.map((item) => (
+                {options.map((item) => (
                     <option key={item} value={item}>
                         {item}
                     </option>

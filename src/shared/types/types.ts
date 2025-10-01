@@ -5,3 +5,6 @@ export interface UseTripsResult {
     isLoading: boolean;
     error: unknown;
 }
+
+
+export type VisitedFilter = "all" | "visited" | "notVisited";
